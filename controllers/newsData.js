@@ -51,7 +51,7 @@ const newsData = (req, res) => {
             retries++;
             setTimeout(() => makeRequest(retries), 1000); // Retry after a delay (1 second in this example)
         } else {
-            res.status(500).send({ message: 'Failed to fetch data from Polygon' });
+            res.status(500).send({ message: 'Failed to fetch data from News' });
         }
     };
 

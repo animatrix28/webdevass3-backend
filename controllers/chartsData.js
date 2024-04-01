@@ -1,4 +1,5 @@
 const https = require("https");
+const { parse } = require("path");
 
 const MAX_RETRIES = 3;
 const INITIAL_DELAY = 1000; // Initial delay in milliseconds
@@ -9,11 +10,7 @@ const chartsData = (req, res) => {
     const from_date = req.body.from_date;
     const to_date = req.body.to_date;
     const range = req.body.range;
-
-    console.log(from_date)
-    console.log(to_date);
     // const apiEndpoint = `/v2/aggs/ticker/${searchQuery.toUpperCase()}/range/1/${range}/${from_date}/${to_date}?adjusted=true&sort=asc&apiKey=${process.env.POLYGONTOKEN}`;
-    // console.log('API Endpoint:', apiEndpoint);
     const options = {
         hostname: 'api.polygon.io',
         path: `/v2/aggs/ticker/${searchQuery.toUpperCase()}/range/1/${range}/${from_date}/${to_date}?adjusted=true&sort=asc&apiKey=${process.env.POLYGONTOKEN}`,
@@ -30,9 +27,8 @@ const chartsData = (req, res) => {
             response.on('end', () => {
                 if (response.statusCode === 200) {
                     const parsedData = JSON.parse(data);
-                    // console.log(parsedData);
-
                     // Send the data back to the client or perform other actions
+                    console.log(parsedData)
                     res.status(200).json({ data: parsedData });
                 } else {
                     console.error(`HTTP error! Status: ${response.statusCode}`);
@@ -70,31 +66,3 @@ const func = {
 }
 
 module.exports = func;
-
-
-    // let from_date = "", to_date = "";
-    // const currentTime = Date.now();
-
-    // const currentDate = new Date(currentTime);
-    // const lastAvailableDate = new Date(timeStamp * 1000);
-    // const timeDifference = currentTime - (timeStamp * 1000);
-
-    // const previousDay = new Date(lastAvailableDate);
-    // previousDay.setDate(previousDay.getDate() - 1);
-
-    // if (timeDifference <= 300000) {
-    //     from_date = previousDay.toISOString().split('T')[0];
-    //     to_date = currentDate.toISOString().split('T')[0];
-    // }
-    // else {
-    //     const previousClosingDate = new Date(previousDay);
-    //     previousClosingDate.setDate(previousClosingDate.getDate() - 1);
-
-    //     from_date = previousClosingDate.toISOString().split('T')[0];
-    //     to_date = previousDay.toISOString().split('T')[0];
-    // }
-    // console.log(from_date);
-    // console.log(to_date);
-    // console.log(timeStamp);
-    // req=requests.get(f'https://api.polygon.io/v2/aggs/ticker/{search_query.upper()}/range/1/day/{from_date}/{current_date}?adjusted=true&sort=asc&apiKey=6VuFDjisS_fG7LsijpChZssp69HnBRS9')
-    // {from_date}/{current_date}
