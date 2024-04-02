@@ -46,7 +46,7 @@ const apiCall = (searchQuery) => {
 };
 
 const setWatchlist = async (req, res) => {
-    const searchQuery = (req.body.searchQuery).toUpperCase();
+    const searchQuery = (req.body.searchQuery);
     const operation = req.body.check;
     const exchange = req.body.exchange;
 
