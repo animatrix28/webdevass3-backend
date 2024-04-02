@@ -10,7 +10,8 @@ const fs = require("fs");
 
 const options = {
     key: fs.readFileSync('certs/key.pem'),
-    cert: fs.readFileSync('certs/cert.pem')
+    cert: fs.readFileSync('certs/cert.pem'),
+    rejectUnauthorized: false
 };
 
 function onError(error) {
@@ -38,6 +39,7 @@ function onError(error) {
 module.exports = function (app) {
     try {
         const server = https.createServer(options, app);
+        
         /**
          * Get port from environment and store in Express.
          */
