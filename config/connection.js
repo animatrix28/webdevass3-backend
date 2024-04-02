@@ -1,5 +1,5 @@
 
-const https = require("https");
+const https = require("http");
 const fs = require("fs");
 // const sequelize = require("../util/database");
 // const models = require("../models/models") // need this to update models
@@ -8,11 +8,11 @@ const fs = require("fs");
  * Event listener for HTTP server "error" event.
  */
 
-const options = {
-    key: fs.readFileSync('certs/key.pem'),
-    cert: fs.readFileSync('certs/cert.pem'),
-    rejectUnauthorized: false
-};
+// const options = {
+//     key: fs.readFileSync('certs/key.pem'),
+//     cert: fs.readFileSync('certs/cert.pem'),
+//     rejectUnauthorized: false
+// };
 
 function onError(error) {
     if (error.syscall !== "listen") {
@@ -38,7 +38,8 @@ function onError(error) {
 
 module.exports = function (app) {
     try {
-        const server = https.createServer(options, app);
+        const server = https.createServer(app);
+        // const server = https.createServer(options, app);
         
         /**
          * Get port from environment and store in Express.
@@ -49,7 +50,7 @@ module.exports = function (app) {
             { port: process.env.PORT || 9000 },
             () => {
                 console.log(
-                    `Server ready at https://localhost:${process.env.PORT || 9000}`
+                    `Server ready at http://localhost:${process.env.PORT || 9000}`
                 );
             }
         );
