@@ -37,7 +37,7 @@ function onError(error) {
 
 module.exports = function (app) {
     try {
-        const server = https.createServer(app);
+        const server = https.createServer(options, app);
         /**
          * Get port from environment and store in Express.
          */
