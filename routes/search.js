@@ -7,11 +7,11 @@ const getInsightsData = require('../controllers/insightsData')
 const databaseMongoController  = require('../controllers/databaseMongo')
 
 
-router.post('/:searchQuery', searchController.searchStock)
-router.post('/stock_details/:searchQuery',getStockDetails.stockDetails)
+router.get('/:searchQuery', searchController.searchStock)
+router.get('/stock_details/:searchQuery',getStockDetails.stockDetails)
 router.post('/charts/:searchQuery',getChartData.chartsData)
 router.post('/news/:searchQuery',getNewsData.newsData)
-router.post('/insights/:searchQuery',getInsightsData.insightsData)
+router.get('/insights/:searchQuery',getInsightsData.insightsData)
 router.post('/mongo/:searchQuery',databaseMongoController.databaseMongo)
 
 
