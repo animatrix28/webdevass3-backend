@@ -1,7 +1,0 @@
-runtime: nodejs18
-
-
-env_variables:
-  TOKEN: "cnmfli9r01qtghmdj570cnmfli9r01qtghmdj57g"
-  POLYGONTOKEN: "Lp2UVKa2Q9phk7HuehKNAdtwW2bwN0Rj"
-  mongoURI: "mongodb+srv://animatrix:animatrix007@cluster0.7xpsfpm.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
